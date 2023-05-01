@@ -29,17 +29,27 @@ setInterval(function() {
     });
 }, 1000); // Actualiza la hora cada 1 segundo
 });
-function obtenerRateUSDCLP() {
-    fetch("https://www.freeforexapi.com/api/live?pairs=USDCLP")
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        var rate = data.rates.USDCLP.rate;
-        var divRate = document.getElementById("rate");
-        divRate.innerHTML = "El rate USD/CLP es " + rate;
-      });
-  }
-  
-  obtenerRateUSDCLP();
-  
+$(document).ready(function() {
+  // Declara la variable today dentro de la función $(document).ready()
+  var today = new Date().toLocaleDateString('en-CA').split('-').reverse().join('-');
+
+  // Consulta el valor de la UF para la fecha actual
+  $.get("https://mindicador.cl/api/uf/" + today, function(data) {
+    // Obtiene el valor de la UF y lo formatea con separador de miles y sin decimales
+    var ufValue = Math.round(data.serie[0].valor).toLocaleString();
+    $("#uf-value").text("$" + ufValue);
+  });
+});
+
+ 
+$(document).ready(function() {
+  // Declara la variable today dentro de la función $(document).ready()
+  var today = new Date().toLocaleDateString('en-CA').split('-').reverse().join('-');
+
+  // Consulta el valor de la UF para la fecha actual
+  $.get("https://mindicador.cl/api/utm/" + today, function(data) {
+    // Obtiene el valor de la UF y lo formatea con separador de miles y sin decimales
+    var utmValue = Math.round(data.serie[0].valor).toLocaleString();
+    $("#utm-value").text("$" + utmValue);
+  });
+});

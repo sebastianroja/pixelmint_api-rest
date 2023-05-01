@@ -8,6 +8,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seccion de productos</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="../static/js/apps.js"></script>
+  
   <link rel="stylesheet" href="../static/css/estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
   integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -41,7 +45,10 @@
    </header>
    <div>
    <div class="fondo2">
+   
 <div class="container">
+  <p>El valor de la UF para hoy es: <span id="uf-value"></span></p>
+  <p>El valor de la UTM para hoy es: <span id="utm-value"></span></p>
 <div class="row">
 {% for product in Products %}
 <div class="col-md-4">     

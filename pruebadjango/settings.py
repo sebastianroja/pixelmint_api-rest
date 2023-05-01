@@ -76,17 +76,17 @@ WSGI_APPLICATION = 'pruebadjango.wsgi.application'
 
 DATABASES = {
     'default': {
-       # 'NAME': BASE_DIR / 'db.sqlite3',
-       #'ENGINE': 'django.db.backends.oracle',
-        #'NAME': '127.0.0.1:1521/xe',
-       # 'USER': 'c##pixelmint76',
-       # 'PASSWORD': 'prueba1234',
-       # 'TEST':{
-    #'USER': 'default_test_tbls' ,
-    #'TBLSPACE': 'default_test_tbls' ,
-    #'TBLSPACE_TMP': 'default_test_tbls_tmp',
+       #'NAME': BASE_DIR / 'db.sqlite3',
+       'ENGINE': 'django.db.backends.oracle',
+        'NAME': '127.0.0.1:1521/xe',
+        'USER': 'c##pixelmint61',
+        'PASSWORD': 'pixel09',
+        'TEST':{
+    'USER': 'default_test_tbls' ,
+    'TBLSPACE': 'default_test_tbls' ,
+    'TBLSPACE_TMP': 'default_test_tbls_tmp',
 
-       # },
+       },
     }
 }
 
