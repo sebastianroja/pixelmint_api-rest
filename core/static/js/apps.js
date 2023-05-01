@@ -6,7 +6,7 @@ $(document).ready(function() {
         var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
         $("#hora-londres").text("Londres: " + formattedTime);
       });
-    }, 1000); // Actualiza la hora cada 1 segundo
+    }, 30000); // Actualiza la hora cada 1 segundo
   });
 
   
@@ -17,7 +17,7 @@ $(document).ready(function() {
         var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
         $("#hora-chile").text("Chile: " + formattedTime);
       });
-    }, 1000); // Actualiza la hora cada 1 segundo
+    }, 30000); // Actualiza la hora cada 1 segundo
   });
   
 $(document).ready(function() {
@@ -27,7 +27,7 @@ setInterval(function() {
     var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
     $("#hora-dubai").text("Dubai: " + formattedTime);
     });
-}, 1000); // Actualiza la hora cada 1 segundo
+}, 30000); // Actualiza la hora cada 1 segundo
 });
 $(document).ready(function() {
   // Declara la variable today dentro de la función $(document).ready()
@@ -52,4 +52,40 @@ $(document).ready(function() {
     var utmValue = Math.round(data.serie[0].valor).toLocaleString();
     $("#utm-value").text("$" + utmValue);
   });
+});
+function getUsersCount() {
+  $.ajax({
+      url: '../users/count/',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+          $('#user-count').html('Cantidad de usuarios registrados: ' + data.count);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Ha ocurrido un error al obtener la cantidad de usuarios');
+      }
+  });
+}
+
+setInterval(getUsersCount, 5000);
+
+function updateLastLogin(userId) {
+  $.ajax({
+      url: '/api/user/' + userId + '/last-login/',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+          $('#last-login').html('Última conexión: ' + data.last_login);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Ha ocurrido un error al obtener la última conexión del usuario');
+      }
+  });
+}
+
+$(document).ready(function() {
+  updateLastLogin(1); // Cambiar el 1 por el ID del usuario deseado
+  setInterval(function() {
+      updateLastLogin(1); // Cambiar el 1 por el ID del usuario deseado
+  }, 5000); // Actualizar cada 5 segundos
 });
