@@ -14,17 +14,12 @@ urlpatterns = [
     path('', iniciarsesion, name="iniciarsesion"),
     path('productos/', productos, name="productos"),
     path('Crearcuenta/', register, name="Crearcuenta"),
-    
-      path('EditarPerfil_copy/', profile, name="EditarPerfil_copy"),
-      path('admin/', admin, name="admin"),
-      path('users/count/', UsersCountView.as_view(), name='users_count'),
-      path('1/last-login/', last_login_api, name='last_login_api'),
+
+    path('EditarPerfil_copy/', profile, name="EditarPerfil_copy"),
+    path('admin/', admin, name="admin"),
+    path('users/count/', UsersCountView.as_view(), name='users_count'),
+    path('api/user/<int:user_id>/last-login/', last_login_api, name='last_login_api'),
 
 
 ]
 urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns +=[
-        path('debug/', include(debug_toolbar.urls)),
-    ]

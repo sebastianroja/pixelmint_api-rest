@@ -58,6 +58,9 @@ function getUsersCount() {
       url: '../users/count/',
       type: 'GET',
       dataType: 'json',
+      headers: {
+          'Authorization': 'Token ' + token
+      },
       success: function(data) {
           $('#user-count').html('Cantidad de usuarios registrados: ' + data.count);
       },
@@ -67,25 +70,22 @@ function getUsersCount() {
   });
 }
 
+
 setInterval(getUsersCount, 5000);
 
 function updateLastLogin(userId) {
   $.ajax({
-      url: '/api/user/' + userId + '/last-login/',
-      type: 'GET',
-      dataType: 'json',
-      success: function(data) {
-          $('#last-login').html('Última conexión: ' + data.last_login);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-          console.error('Ha ocurrido un error al obtener la última conexión del usuario');
-      }
+    url: '/api/user/' + userId + '/last-login/',
+    type: 'GET',
+    dataType: 'json',
+    beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader('Authorization', 'Token ' + token);
+    },
+    success: function(data) {
+      $('#last-login').html('Última conexión: ' + data.last_login);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.error('Ha ocurrido un error al obtener la última conexión del usuario');
+    }
   });
 }
-
-$(document).ready(function() {
-  updateLastLogin(1); // Cambiar el 1 por el ID del usuario deseado
-  setInterval(function() {
-      updateLastLogin(1); // Cambiar el 1 por el ID del usuario deseado
-  }, 5000); // Actualizar cada 5 segundos
-});

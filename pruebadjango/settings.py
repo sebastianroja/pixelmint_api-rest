@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
        #'NAME': BASE_DIR / 'db.sqlite3',
        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/xe',
+        'NAME': '127.0.0.1:1521/orcl',
         'USER': 'c##pixelmint61',
         'PASSWORD': 'pixel09',
         'TEST':{
