@@ -6,7 +6,7 @@ $(document).ready(function() {
         var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
         $("#hora-londres").text("Londres: " + formattedTime);
       });
-    }, 30000); // Actualiza la hora cada 1 segundo
+    }, 1000); 
   });
 
   
@@ -17,7 +17,7 @@ $(document).ready(function() {
         var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
         $("#hora-chile").text("Chile: " + formattedTime);
       });
-    }, 30000); // Actualiza la hora cada 1 segundo
+    }, 1000); 
   });
   
 $(document).ready(function() {
@@ -27,7 +27,7 @@ setInterval(function() {
     var formattedTime = moment(londonTime, "HH:mm").format("h:mm A"); // Da formato a la hora
     $("#hora-dubai").text("Dubai: " + formattedTime);
     });
-}, 30000); // Actualiza la hora cada 1 segundo
+}, 1000); // Actualiza la hora cada 1 segundo
 });
 $(document).ready(function() {
   // Declara la variable today dentro de la función $(document).ready()
@@ -53,14 +53,12 @@ $(document).ready(function() {
     $("#utm-value").text("$" + utmValue);
   });
 });
+
 function getUsersCount() {
   $.ajax({
-      url: '../users/count/',
+      url: '/users/count/',
       type: 'GET',
       dataType: 'json',
-      headers: {
-          'Authorization': 'Token ' + token
-      },
       success: function(data) {
           $('#user-count').html('Cantidad de usuarios registrados: ' + data.count);
       },
@@ -69,6 +67,8 @@ function getUsersCount() {
       }
   });
 }
+
+setInterval(getUsersCount, 5000);
 
 
 setInterval(getUsersCount, 5000);
